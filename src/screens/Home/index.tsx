@@ -10,6 +10,8 @@ import { useEffect } from "react";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { IMovie } from "@/entities/movie";
 import { Movie } from "@/components/Movie";
+import { MovieActions } from "@/store/reducers/movieReducer";
+import reactotron from "reactotron-react-native";
 
 function Home() {
   const navigation = useNavigation();
@@ -17,7 +19,7 @@ function Home() {
   const movies: IMovie[] = useAppSelector((state) => state.movies.data);
 
   useEffect(() => {
-    dispatch({ type: "FETCH_MOVIES" });
+    dispatch(MovieActions.getMoviesRequest());
   }, []);
 
   function handleSelectMovie(movie: IMovie) {
